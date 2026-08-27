@@ -1,0 +1,60 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 14/08/2026, 16:25:48
+    Author     : informatica
+*/
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to edit this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 14/08/2026, 16:25:48
+    Author     : informatica
+*/
+
+/* Asigna esto al AnchorPane principal de tu vista */
+.fondo-principal {
+    -fx-background-color: linear-gradient(to bottom right, #00d2ff, #3a7bd5, #ffeb3b);
+}
+
+/* Botón Primario (Ej. Iniciar Sesión) - Tono azul elegante con texto blanco */
+.btn-primary {
+    -fx-background-color: linear-gradient(to bottom, #4e73df, #224abe);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to bottom, #224abe, #1a38a0);
+}
+
+/* Botón Secundario (Ej. Registrarse) - Verde vibrante */
+.btn-secundary {
+    -fx-background-color: linear-gradient(to bottom, #2ecc71, #27ae60);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.btn-secundary:hover {
+    -fx-background-color: linear-gradient(to bottom, #27ae60, #1e8449);
+}
+
+/* Botón Tercero (Adicional para alguna otra acción) - Tono naranja/coral */
+.btn-third {
+    -fx-background-color: linear-gradient(to bottom, #ff9966, #ff5e62);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.btn-third:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff5e62, #e0484c);
+}
