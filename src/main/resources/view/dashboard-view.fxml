@@ -29,15 +29,17 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <TableView layoutX="114.0" layoutY="-71.0" prefHeight="200.0" prefWidth="305.0">
+                  <TableView fx:id="tableProducto" layoutX="14.0" layoutY="-71.0" prefHeight="240.0" prefWidth="400.5">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="tableColumnIdProducto" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="tableColumnNombreProducto" prefWidth="150.0" text="Nombre" />
+                      <TableColumn fx:id="tableColumnStock" prefWidth="75.0" text="Stock" />
+                      <TableColumn fx:id="tableColumnPrecio" prefWidth="100.0" text="Precio" />
                     </columns>
                   </TableView>
                </children>
             </Pane>
-            <Button mnemonicParsing="false" text="hola" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#handleEliminarProducto" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
