@@ -16,7 +16,7 @@ public class LoginController implements Initializable {
     
     private final AuthService authService;
     private final SceneManager sceneManager;
-               
+                 
     @FXML
     private Button btnIniciarSesion;
     @FXML
@@ -38,16 +38,21 @@ public class LoginController implements Initializable {
         if(txtFieldEmail.getText().isEmpty() || txtFieldPassword.getText().isEmpty()){
             sceneManager.showAlertInfo("Hay campos sin llenar", "No puedes dejar espacion en blanco", "Intenta de nuevo", Alert.AlertType.INFORMATION);
         } else {
-            try{
+            try {
                 LoginDTOResponse response = authService.login(new LoginDTORequest(txtFieldEmail.getText(), txtFieldPassword.getText()));
                 
                 // 1. Muestras tu alerta de bienvenida
                 sceneManager.showAlertInfo("Bienvenido: " + response.getNombre(), "Es bueno verte:", "inicio de Sesion correcto", Alert.AlertType.INFORMATION);
                 
-                // 2. ¡AQUÍ ESTÁ LO QUE FALTA! Llamas a tu SceneManager para abrir el Dashboard
-                sceneManager.showDashboardView();
+                // 2. Intentamos cargar la vista del Dashboard con su propio try-catch
+                try {
+                    sceneManager.showDashboardView();
+                } catch (Exception e) {
+                    sceneManager.showAlertInfo("Error de navegación", "No se pudo cargar la vista del dashboard", e.getMessage(), Alert.AlertType.ERROR);
+                    e.printStackTrace(); // Útil para depurar en consola si la ruta del FXML falla
+                }
                 
-            }catch(RuntimeException e){
+            } catch(RuntimeException e){
                 sceneManager.showAlertInfo("Error al iniciar sesion", "Verificar campos", "No se ha podido iniciar sesion", Alert.AlertType.WARNING);
             }
         }
