@@ -3,6 +3,36 @@
     -fx-background-color: #121824;
 }
 
+/* ===== Panel de navegación lateral ===== */
+.nav-panel {
+    -fx-background-color: #0f172a;
+    -fx-padding: 20 10 20 10;
+    -fx-border-color: #334155;
+    -fx-border-width: 0 1 0 0;
+}
+
+/* Botones de navegación (Productos / Usuarios) - color neutro, ya NO rojo */
+.nav-button {
+    -fx-background-color: #1e293b;
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #334155;
+    -fx-text-fill: #f8fafc;
+}
+
+.nav-button-active {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+}
+
 /* Estilo general para la TableView */
 .table-view {
     -fx-background-color: #1e293b;
@@ -51,21 +81,40 @@
     -fx-padding: 6px 10px;
 }
 
-/* Botón de Eliminar estilizado */
-.button {
+/* ===== Botones rojos (Eliminar Producto / Regresar al Inicio) ===== */
+.danger-button {
     -fx-background-color: #ef4444;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 12px;
     -fx-background-radius: 6px;
     -fx-cursor: hand;
-    -fx-padding: 6px 16px;
+    -fx-padding: 8px 16px;
 }
 
-.button:hover {
+.danger-button:hover {
     -fx-background-color: #dc2626;
 }
 
-.button:pressed {
+.danger-button:pressed {
     -fx-background-color: #b91c1c;
+}
+
+/* ===== Botón azul (Actualizar) ===== */
+.primary-button {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+}
+
+.primary-button:hover {
+    -fx-background-color: #2563eb;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #1d4ed8;
 }
