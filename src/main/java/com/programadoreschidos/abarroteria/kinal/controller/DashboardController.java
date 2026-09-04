@@ -62,7 +62,7 @@ public class DashboardController implements Initializable {
 
         try {
             // Revisa si en tu clase Producto el getter se llama getId_productos() o getIdProducto()
-            dashboardService.eliminarProducto(productoSeleccionado.getIdproducto());
+            dashboardService.eliminarProducto(productoSeleccionado.getIdProducto());
             handleLoadDataTableView();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -28,14 +28,14 @@
                <children>
                   <ImageView fitHeight="95.0" fitWidth="120.0" layoutX="154.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@./images.jpg" />
+                        <Image url="@../images/images.jpg" />
                      </image>
                   </ImageView>
                   <TextField fx:id="txtFieldEmail" layoutX="62.0" layoutY="166.0" prefHeight="25.0" prefWidth="279.0" />
                   <Label layoutX="131.0" layoutY="141.0" prefHeight="25.0" prefWidth="141.0" text="Correo electronico " />
                   <PasswordField fx:id="txtFieldPassword" layoutX="62.0" layoutY="228.0" prefHeight="17.0" prefWidth="279.0" />
                   <Button fx:id="btnIniciarSesion" layoutY="276.0" mnemonicParsing="false" onAction="#handleLogin" styleClass="btn-secundary" stylesheets="@../css/button-style.css" text="INICIAR SESION" />
-                  <Button layoutX="272.0" layoutY="276.0" mnemonicParsing="false" styleClass="btn-primary" stylesheets="@../css/button-style.css" text="REGISTRARSE" />
+                 <Button fx:id="btnRegistrarse" layoutX="272.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleIrARegistro" styleClass="btn-primary" stylesheets="@../css/button-style.css" text="REGISTRARSE" />
                   <Label layoutX="170.0" layoutY="200.0" text="Contrasena " />
                </children>
             </Pane>
