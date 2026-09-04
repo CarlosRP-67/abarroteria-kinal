@@ -11,17 +11,17 @@ import java.math.BigDecimal;
  * @author informatica
  */
 public class Producto {
-    private String idproducto;
+    private String idProducto;
     private String nombreProducto;
             private int stock;
             private BigDecimal precio;
 
-    public String getIdproducto() {
-        return idproducto;
+    public String getIdProducto() {
+        return idProducto;
     }
 
-    public void setIdproducto(String idproducto) {
-        this.idproducto = idproducto;
+    public void setIdProducto(String idproducto) {
+        this.idProducto = idproducto;
     }
 
     public String getNombreProducto() {
@@ -49,7 +49,7 @@ public class Producto {
     }
 
     public Producto(String idproducto, String nombreProducto, int stock, BigDecimal precio) {
-        this.idproducto = idproducto;
+        this.idProducto = idproducto;
         this.nombreProducto = nombreProducto;
         this.stock = stock;
         this.precio = precio;

@@ -20,4 +20,13 @@ public class DashboadService {
     public void eliminarProducto(String idProducto) {
         productoRepository.delete(idProducto);
     }
+    
+    public void guardarProducto(Producto producto) {
+        productoRepository.save(producto); // Revisa si en tu repositorio el método se llama save(), saveProducto() o insert()
+    }
+    
+    public void actualizarProducto(Producto producto) {
+    productoRepository.actualizar(producto);
+}
+
 }
