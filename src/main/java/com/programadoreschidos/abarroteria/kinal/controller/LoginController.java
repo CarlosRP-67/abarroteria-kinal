@@ -19,6 +19,11 @@ public class LoginController implements Initializable {
                  
     @FXML
     private Button btnIniciarSesion;
+    
+    // 1. Añadimos la anotación y el botón para registrarse
+    @FXML
+    private Button btnRegistrarse; 
+    
     @FXML
     private TextField txtFieldEmail;
     @FXML
@@ -55,6 +60,18 @@ public class LoginController implements Initializable {
             } catch(RuntimeException e){
                 sceneManager.showAlertInfo("Error al iniciar sesion", "Verificar campos", "No se ha podido iniciar sesion", Alert.AlertType.WARNING);
             }
+        }
+    }
+
+    // 2. Añadimos el método para controlar la acción del botón Registrarse
+    @FXML
+    public void handleIrARegistro() {
+        try {
+            // Llamamos al SceneManager para que maneje la transición a la vista de registro
+            sceneManager.showRegistroView(); 
+        } catch (Exception e) {
+            sceneManager.showAlertInfo("Error de navegación", "No se pudo cargar la vista de registro", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
         }
     }
 

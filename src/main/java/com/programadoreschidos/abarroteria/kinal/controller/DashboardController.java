@@ -136,6 +136,6 @@ public class DashboardController implements Initializable {
     
     @FXML
     private void handleActualizarProductos() {
-    handleLoadDataTableView();
- }
+        handleLoadDataTableView();
+    }
 }
