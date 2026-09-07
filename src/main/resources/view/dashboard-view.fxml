@@ -1,38 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
-
-<AnchorPane id="AnchorPane" prefHeight="380.0" prefWidth="550.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.programadoreschidos.abarroteria.kinal.controller.DashboardController">
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.programadoreschidos.abarroteria.kinal.controller.DashboardController">
     <stylesheets>
         <URL value="@/main/resources/css/dashboard-style.css" />
     </stylesheets>
-   <children>
-      <GridPane hgap="10" layoutX="20.0" layoutY="20.0" prefHeight="340.0" prefWidth="510.0" vgap="12">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="275.0" minHeight="10.0" prefHeight="275.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <TableView fx:id="tableProducto" prefHeight="275.0" prefWidth="510.0">
-              <columns>
-                <TableColumn fx:id="tableColumnIdProducto" prefWidth="90.0" text="ID" />
-                <TableColumn fx:id="tableColumnNombreProducto" prefWidth="190.0" text="Nombre" />
-                <TableColumn fx:id="tableColumnStock" prefWidth="90.0" text="Stock" />
-                <TableColumn fx:id="tableColumnPrecio" prefWidth="120.0" text="Precio" />
-              </columns>
-            </TableView>
-            <Button mnemonicParsing="false" onAction="#handleEliminarProducto" prefHeight="35.0" prefWidth="261.0" text="Eliminar Producto" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
-   </children>
-</AnchorPane>
+
+    <left>
+        <VBox styleClass="nav-panel" prefWidth="180.0" minWidth="180.0" spacing="8.0">
+            <children>
+                <Button fx:id="btnNavProductos" styleClass="nav-button" text="Productos" onAction="#handleShowProductos" maxWidth="Infinity" />
+                <Button fx:id="btnNavUsuarios" styleClass="nav-button" text="Usuarios" onAction="#handleShowUsuarios" maxWidth="Infinity" />
+
+                <!-- Empuja el botón de abajo hacia el fondo del panel -->
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button fx:id="btnRegresarInicio" styleClass="danger-button" text="Regresar al Inicio" onAction="#handleRegresarInicio" maxWidth="Infinity" />
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane>
+            <children>
+                <!-- Panel de Productos -->
+                <AnchorPane fx:id="panelProductos">
+                    <children>
+                        <GridPane hgap="10" vgap="12"
+                                  AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0"
+                                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="ALWAYS" percentHeight="88.0" />
+                                <RowConstraints vgrow="SOMETIMES" percentHeight="12.0" minHeight="45.0" />
+                            </rowConstraints>
+                            <children>
+                                <TableView fx:id="tableProducto" GridPane.rowIndex="0">
+                                    <columns>
+                                        <TableColumn fx:id="tableColumnIdProducto" text="ID" />
+                                        <TableColumn fx:id="tableColumnNombreProducto" text="Nombre" />
+                                        <TableColumn fx:id="tableColumnStock" text="Stock" />
+                                        <TableColumn fx:id="tableColumnPrecio" text="Precio" />
+                                    </columns>
+                                </TableView>
+
+                                <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.rowIndex="1">
+                                    <children>
+                                        <Button mnemonicParsing="false" styleClass="primary-button" onAction="#handleActualizarProductos"
+                                                prefHeight="35.0" prefWidth="160.0" text="Actualizar" />
+                                        <Button mnemonicParsing="false" styleClass="danger-button" onAction="#handleEliminarProducto"
+                                                prefHeight="35.0" prefWidth="200.0" text="Eliminar Producto" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </GridPane>
+                    </children>
+                </AnchorPane>
+
+                <!-- Panel de Usuarios: vista incluida desde usuario-view.fxml -->
+                <fx:include fx:id="panelUsuarios" source="usuario-view.fxml" visible="false" managed="false" />
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>
