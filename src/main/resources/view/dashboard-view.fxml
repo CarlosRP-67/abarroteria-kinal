@@ -24,6 +24,7 @@
             <children>
                 <Button fx:id="btnNavProductos" styleClass="nav-button" text="Productos" onAction="#handleShowProductos" maxWidth="Infinity" />
                 <Button fx:id="btnNavUsuarios" styleClass="nav-button" text="Usuarios" onAction="#handleShowUsuarios" maxWidth="Infinity" />
+                <Button fx:id="btnNavFacturas" styleClass="nav-button" text="Facturas" onAction="#handleShowFacturas" maxWidth="Infinity" />
 
                 <!-- Empuja el botón de abajo hacia el fondo del panel -->
                 <Region VBox.vgrow="ALWAYS" />
@@ -74,6 +75,9 @@
 
                 <!-- Panel de Usuarios: vista incluida desde usuario-view.fxml -->
                 <fx:include fx:id="panelUsuarios" source="usuario-view.fxml" visible="false" managed="false" />
+
+                <!-- Panel de Facturas: vista incluida desde factura-view.fxml -->
+                <fx:include fx:id="panelFacturas" source="factura-view.fxml" visible="false" managed="false" />
             </children>
         </StackPane>
     </center>

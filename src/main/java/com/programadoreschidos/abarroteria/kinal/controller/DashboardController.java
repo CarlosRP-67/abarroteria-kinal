@@ -38,11 +38,17 @@ public class DashboardController implements Initializable {
     @FXML
     private AnchorPane panelProductos;
     @FXML
-    private AnchorPane panelUsuarios; // nodo raíz inyectado desde fx:include
+    private AnchorPane panelUsuarios;
+    @FXML
+    private AnchorPane panelFacturas;
+    @FXML
+    private FacturaController panelFacturasController;
     @FXML
     private Button btnNavProductos;
     @FXML
     private Button btnNavUsuarios;
+    @FXML
+    private Button btnNavFacturas;
     @FXML
     private Button btnRegresarInicio;
 
@@ -188,26 +194,39 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void handleShowProductos() {
-        panelProductos.setVisible(true);
-        panelProductos.setManaged(true);
-        panelUsuarios.setVisible(false);
-        panelUsuarios.setManaged(false);
+        if (panelProductos != null) { panelProductos.setVisible(true); panelProductos.setManaged(true); }
+        if (panelUsuarios != null) { panelUsuarios.setVisible(false); panelUsuarios.setManaged(false); }
+        if (panelFacturas != null) { panelFacturas.setVisible(false); panelFacturas.setManaged(false); }
         marcarBotonActivo(btnNavProductos);
     }
 
     @FXML
     private void handleShowUsuarios() {
-        panelUsuarios.setVisible(true);
-        panelUsuarios.setManaged(true);
-        panelProductos.setVisible(false);
-        panelProductos.setManaged(false);
+        if (panelUsuarios != null) { panelUsuarios.setVisible(true); panelUsuarios.setManaged(true); }
+        if (panelProductos != null) { panelProductos.setVisible(false); panelProductos.setManaged(false); }
+        if (panelFacturas != null) { panelFacturas.setVisible(false); panelFacturas.setManaged(false); }
         marcarBotonActivo(btnNavUsuarios);
     }
 
+    @FXML
+    private void handleShowFacturas() {
+        if (panelFacturas != null) { panelFacturas.setVisible(true); panelFacturas.setManaged(true); }
+        if (panelProductos != null) { panelProductos.setVisible(false); panelProductos.setManaged(false); }
+        if (panelUsuarios != null) { panelUsuarios.setVisible(false); panelUsuarios.setManaged(false); }
+
+        if (panelFacturasController != null) {
+            panelFacturasController.handleLoadCatalogoVisual();
+        }
+
+        marcarBotonActivo(btnNavFacturas);
+    }
+
     private void marcarBotonActivo(Button activo) {
-        btnNavProductos.getStyleClass().remove("nav-button-active");
-        btnNavUsuarios.getStyleClass().remove("nav-button-active");
-        if (!activo.getStyleClass().contains("nav-button-active")) {
+        if (btnNavProductos != null) btnNavProductos.getStyleClass().remove("nav-button-active");
+        if (btnNavUsuarios != null) btnNavUsuarios.getStyleClass().remove("nav-button-active");
+        if (btnNavFacturas != null) btnNavFacturas.getStyleClass().remove("nav-button-active");
+        
+        if (activo != null && !activo.getStyleClass().contains("nav-button-active")) {
             activo.getStyleClass().add("nav-button-active");
         }
     }
