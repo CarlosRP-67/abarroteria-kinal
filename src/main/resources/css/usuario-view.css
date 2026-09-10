@@ -1,7 +1,47 @@
-/*
- * Empty Stylesheet file.
- */
-
+/* Contenedor principal si se requiere */
 .mainFxmlClass {
+    -fx-background-color: #121824;
+}
 
+/* Estilo general para los botones del CRUD */
+.button {
+    -fx-background-color: #1e293b; /* Azul grisáceo oscuro elegante */
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-background-radius: 8px; /* Bordes redondeados */
+    -fx-border-radius: 8px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+    -fx-transition: all 0.3s ease;
+}
+
+/* Efecto cuando pasas el mouse por encima (Hover) */
+.button:hover {
+    -fx-background-color: #334155;
+}
+
+/* Estilo específico para el botón NUEVO (Verde esmeralda moderno) */
+#btnNuevo {
+    -fx-background-color: #10b981; 
+}
+#btnNuevo:hover {
+    -fx-background-color: #059669;
+}
+
+/* Estilo específico para el botón EDITAR (Azul vibrante) */
+#btnEditar {
+    -fx-background-color: #3b82f6; 
+}
+#btnEditar:hover {
+    -fx-background-color: #2563eb;
+}
+
+/* Estilo específico para el botón ELIMINAR (Rojo sutil/alerta similar al de regresar) */
+#btnEliminar {
+    -fx-background-color: #ef4444; 
+}
+#btnEliminar:hover {
+    -fx-background-color: #dc2626;
 }
