@@ -46,12 +46,11 @@ public class SceneManager {
         });
 
         Parent root = loader.load();
-        Scene scene = new Scene(root, 600, 600);
+        // Ajuste de altura a 580px y anchura a 850px para evitar el recorte inferior
+        Scene scene = new Scene(root, 850, 580);
         
-        // Reseteamos las restricciones de tamaño para que la vista de login
-        // conserve su tamaño original y no herede las del dashboard.
-        stage.setMinWidth(0);
-        stage.setMinHeight(0);
+        stage.setMinWidth(800);
+        stage.setMinHeight(550);
 
         stage.setScene(scene);  
         stage.centerOnScreen();
