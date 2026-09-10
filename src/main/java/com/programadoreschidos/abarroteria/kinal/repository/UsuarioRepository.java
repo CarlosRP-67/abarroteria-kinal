@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.java.com.programadoreschidos.abarroteria.kinal.config.DataBaseConnection;
 import main.java.com.programadoreschidos.abarroteria.kinal.model.Usuario;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -31,6 +32,22 @@ public class UsuarioRepository {
             e.printStackTrace();
             throw new RuntimeException("Error en la consulta de usuarios.");
         }
+    }
+    
+    public boolean existeCliente(String idCliente) {
+        String sql = "SELECT COUNT(*) FROM clientes WHERE id_cliente = ?";
+        try (Connection conn = DataBaseConnection.getDataBaseConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, idCliente);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void save(Usuario usuario) {

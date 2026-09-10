@@ -9,14 +9,17 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.com.programadoreschidos.abarroteria.kinal.controller.DashboardController;
+import main.java.com.programadoreschidos.abarroteria.kinal.controller.FacturaController;
 import main.java.com.programadoreschidos.abarroteria.kinal.controller.LoginController;
 import main.java.com.programadoreschidos.abarroteria.kinal.controller.RegistroController;
 import main.java.com.programadoreschidos.abarroteria.kinal.controller.UsuarioController;
 import main.java.com.programadoreschidos.abarroteria.kinal.repository.AuthRepository;
+import main.java.com.programadoreschidos.abarroteria.kinal.repository.FacturaRepository;
 import main.java.com.programadoreschidos.abarroteria.kinal.repository.ProductoRepository;
 import main.java.com.programadoreschidos.abarroteria.kinal.repository.UsuarioRepository;
 import main.java.com.programadoreschidos.abarroteria.kinal.service.AuthService;
 import main.java.com.programadoreschidos.abarroteria.kinal.service.DashboadService;
+import main.java.com.programadoreschidos.abarroteria.kinal.service.FacturaService;
 import main.java.com.programadoreschidos.abarroteria.kinal.service.UsuarioService;
 
 public class SceneManager {
@@ -71,6 +74,13 @@ public class SceneManager {
                 UsuarioRepository usuarioRepository = new UsuarioRepository();
                 UsuarioService usuarioService = new UsuarioService(usuarioRepository);
                 return new UsuarioController(usuarioService, this);
+            }
+            if(clazz == FacturaController.class){
+                ProductoRepository productoRepository = new ProductoRepository();
+                DashboadService dashboardService = new DashboadService(productoRepository);
+                FacturaRepository facturaRepository = new FacturaRepository();
+                FacturaService facturaService = new FacturaService(facturaRepository, productoRepository);
+                return new FacturaController(facturaService, dashboardService);
             }
             try{
                 return clazz.getDeclaredConstructor().newInstance();
