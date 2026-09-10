@@ -119,9 +119,7 @@ public class DashboardController implements Initializable {
             alert.showAndWait();
         }
     }
-<<<<<<< HEAD
-}
-=======
+
 
     @FXML
     private void handleRegresarInicio() {
@@ -142,4 +140,4 @@ public class DashboardController implements Initializable {
     handleLoadDataTableView();
  }
 }
->>>>>>> e6dfe73352b1253ceee4a711538904ae2f7caad4
+

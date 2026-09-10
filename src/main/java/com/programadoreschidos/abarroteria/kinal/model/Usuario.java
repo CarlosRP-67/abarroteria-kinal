@@ -37,7 +37,6 @@ public class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public String getApellido() {
         return apellido;
     }
@@ -68,7 +67,5 @@ public class Usuario {
 
     public void setId_roles(int id_roles) {
         this.id_roles = id_roles;
-    }
-    
-   
+    }                                       
 }

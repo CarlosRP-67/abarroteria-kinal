@@ -13,17 +13,17 @@ import main.java.com.programadoreschidos.abarroteria.kinal.service.AuthService;
 import main.java.com.programadoreschidos.abarroteria.kinal.util.SceneManager;
 
 public class LoginController implements Initializable {
-    
+
     private final AuthService authService;
     private final SceneManager sceneManager;
-                 
+
     @FXML
     private Button btnIniciarSesion;
     @FXML
     private TextField txtFieldEmail;
     @FXML
     private TextField txtFieldPassword;
-    
+
     public LoginController(AuthService authService, SceneManager sceneManager) {
         this.authService = authService;
         this.sceneManager = sceneManager;
@@ -31,31 +31,28 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Inicializador
     }    
-    
+
     public void handleLogin(){
         if(txtFieldEmail.getText().isEmpty() || txtFieldPassword.getText().isEmpty()){
-            sceneManager.showAlertInfo("Hay campos sin llenar", "No puedes dejar espacion en blanco", "Intenta de nuevo", Alert.AlertType.INFORMATION);
+            sceneManager.showAlertInfo("Hay campos sin llenar", "No puedes dejar espacios en blanco", "Intenta de nuevo", Alert.AlertType.INFORMATION);
         } else {
             try {
                 LoginDTOResponse response = authService.login(new LoginDTORequest(txtFieldEmail.getText(), txtFieldPassword.getText()));
-                
-                // 1. Muestras tu alerta de bienvenida
-                sceneManager.showAlertInfo("Bienvenido: " + response.getNombre(), "Es bueno verte:", "inicio de Sesion correcto", Alert.AlertType.INFORMATION);
-                
-                // 2. Intentamos cargar la vista del Dashboard con su propio try-catch
+
+                sceneManager.showAlertInfo("Bienvenido: " + response.getNombre(), "Es bueno verte:", "Inicio de Sesión correcto", Alert.AlertType.INFORMATION);
+
                 try {
                     sceneManager.showDashboardView();
                 } catch (Exception e) {
                     sceneManager.showAlertInfo("Error de navegación", "No se pudo cargar la vista del dashboard", e.getMessage(), Alert.AlertType.ERROR);
-                    e.printStackTrace(); // Útil para depurar en consola si la ruta del FXML falla
+                    e.printStackTrace();
                 }
-                
+
             } catch(RuntimeException e){
                 sceneManager.showAlertInfo("Error al iniciar sesion", "Verificar campos", "No se ha podido iniciar sesion", Alert.AlertType.WARNING);
             }
         }
     }
-
 }

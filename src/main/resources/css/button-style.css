@@ -1,60 +1,173 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 14/08/2026, 16:25:48
-    Author     : informatica
-*/
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to edit this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 14/08/2026, 16:25:48
-    Author     : informatica
-*/
-
-/* Asigna esto al AnchorPane principal de tu vista */
-.fondo-principal {
-    -fx-background-color: linear-gradient(to bottom right, #00d2ff, #3a7bd5, #ffeb3b);
+/* Fondo general de la ventana */
+.mainFxmlClass {
+    -fx-background-color: #121824;
 }
 
-/* Botón Primario (Ej. Iniciar Sesión) - Tono azul elegante con texto blanco */
+/* ===== Fondos originales del Login ===== */
+.fondo-degradado {
+    -fx-background-color: linear-gradient(to bottom right, #1e293b, #0f172a);
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.fondo-principal {
+    -fx-background-color: transparent;
+}
+
+/* ===== Panel de navegación lateral ===== */
+.nav-panel {
+    -fx-background-color: #0f172a;
+    -fx-padding: 20 10 20 10;
+    -fx-border-color: #334155;
+    -fx-border-width: 0 1 0 0;
+}
+
+/* Botones de navegación (Productos / Usuarios) */
+.nav-button {
+    -fx-background-color: #1e293b;
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #334155;
+    -fx-text-fill: #f8fafc;
+}
+
+.nav-button-active {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+}
+
+/* Estilo general para la TableView */
+.table-view {
+    -fx-background-color: #1e293b;
+    -fx-table-cell-border-color: #334155;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #334155;
+    -fx-border-width: 1px;
+}
+
+/* Encabezados de la tabla */
+.table-view .column-header-background {
+    -fx-background-color: #0f172a;
+    -fx-background-radius: 8px 8px 0px 0px;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: #334155;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #f8fafc;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+/* Celdas de la tabla */
+.table-row-cell {
+    -fx-background-color: #1e293b;
+    -fx-text-fill: e2e8f0;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #1a2332;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+}
+
+.table-cell {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 12px;
+    -fx-padding: 6px 10px;
+}
+
+/* ===== Botones de la vista Login (Bordes Redondos) ===== */
 .btn-primary {
-    -fx-background-color: linear-gradient(to bottom, #4e73df, #224abe);
+    -fx-background-color: #3b82f6;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
     -fx-cursor: hand;
 }
 
 .btn-primary:hover {
-    -fx-background-color: linear-gradient(to bottom, #224abe, #1a38a0);
+    -fx-background-color: #2563eb;
 }
 
-/* Botón Secundario (Ej. Registrarse) - Verde vibrante */
 .btn-secundary {
-    -fx-background-color: linear-gradient(to bottom, #2ecc71, #27ae60);
-    -fx-text-fill: white;
+    -fx-background-color: #1e293b;
+    -fx-text-fill: #cbd5e1;
     -fx-font-weight: bold;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
     -fx-cursor: hand;
+    -fx-border-color: #334155;
 }
 
 .btn-secundary:hover {
-    -fx-background-color: linear-gradient(to bottom, #27ae60, #1e8449);
+    -fx-background-color: #334155;
+    -fx-text-fill: #f8fafc;
 }
 
-/* Botón Tercero (Adicional para alguna otra acción) - Tono naranja/coral */
-.btn-third {
-    -fx-background-color: linear-gradient(to bottom, #ff9966, #ff5e62);
+/* ===== Campos de texto del login (Bordes redondos y estéticos) ===== */
+.text-field, .password-field {
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-background-color: #1e293b;
+    -fx-text-fill: #f8fafc;
+    -fx-border-color: #334155;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #3b82f6;
+}
+
+/* ===== Botones rojos (Dashboard) ===== */
+.danger-button {
+    -fx-background-color: #ef4444;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-radius: 5px;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6px;
     -fx-cursor: hand;
+    -fx-padding: 8px 16px;
 }
 
-.btn-third:hover {
-    -fx-background-color: linear-gradient(to bottom, #ff5e62, #e0484c);
+.danger-button:hover {
+    -fx-background-color: #dc2626;
+}
+
+.danger-button:pressed {
+    -fx-background-color: #b91c1c;
+}
+
+/* ===== Botones azules de acción (Dashboard) ===== */
+.primary-button {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+}
+
+.primary-button:hover {
+    -fx-background-color: #2563eb;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #1d4ed8;
 }
