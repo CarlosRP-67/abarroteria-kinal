@@ -4,15 +4,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.com.programadoreschidos.abarroteria.kinal.model.Usuario;
 import main.java.com.programadoreschidos.abarroteria.kinal.service.UsuarioService;
+import main.java.com.programadoreschidos.abarroteria.kinal.util.SceneManager;
 
 public class UsuarioController implements Initializable {
 
     private UsuarioService usuarioService;
+    private SceneManager sceneManager;
+
+    @FXML
+    private Button btnRegresarLogin;
 
     @FXML
     private TableView<Usuario> tableUsuario;
@@ -27,8 +34,9 @@ public class UsuarioController implements Initializable {
     @FXML
     private TableColumn<Usuario, Integer> tableColumnRolUsuario;
 
-    public UsuarioController(UsuarioService usuarioService) {
+    public UsuarioController(UsuarioService usuarioService, SceneManager sceneManager) {
         this.usuarioService = usuarioService;
+        this.sceneManager = sceneManager;
     }
 
     @Override
@@ -46,4 +54,18 @@ private void handleLoadDataTableView() {
     tableUsuario.setItems(usuarioService.findUsuarios());
     tableUsuario.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // <-- nuevo
 }
+
+    @FXML
+    private void handleRegresarLogin() {
+        try {
+            sceneManager.showLoginView();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("No se pudo regresar a la pantalla de login.");
+            alert.showAndWait();
+        }
+    }
 }

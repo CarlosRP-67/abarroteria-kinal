@@ -1,16 +1,22 @@
 package main.java.com.programadoreschidos.abarroteria.kinal.controller;
 
+import java.util.UUID;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import main.java.com.programadoreschidos.abarroteria.kinal.model.Usuario;
+import main.java.com.programadoreschidos.abarroteria.kinal.security.jbcrypt.BCrypt;
+import main.java.com.programadoreschidos.abarroteria.kinal.service.UsuarioService;
 import main.java.com.programadoreschidos.abarroteria.kinal.util.SceneManager;
 
 public class RegistroController {
 
     private final SceneManager sceneManager;
+    private final UsuarioService usuarioService;
 
     @FXML private TextField txtNombre;
     @FXML private TextField txtEmail;
@@ -23,8 +29,9 @@ public class RegistroController {
     @FXML private Button btnLimpiar;
     @FXML private Button btnCancelar;
 
-    public RegistroController(SceneManager sceneManager) {
+    public RegistroController(SceneManager sceneManager, UsuarioService usuarioService) {
         this.sceneManager = sceneManager;
+        this.usuarioService = usuarioService;
     }
 
     @FXML
@@ -54,12 +61,49 @@ public class RegistroController {
 
     @FXML
     private void guardarUsuario(ActionEvent event) {
-        String nombre = txtNombre.getText();
-        String email = txtEmail.getText();
+        String nombreCompleto = txtNombre.getText() == null ? "" : txtNombre.getText().trim();
+        String email = txtEmail.getText() == null ? "" : txtEmail.getText().trim();
         String password = txtPassword.getText();
         String rol = cbRol.getValue();
-        
-        System.out.println("Registrando usuario: " + nombre + " con rol: " + rol);
+
+        if (nombreCompleto.isEmpty() || email.isEmpty() || password == null || password.isEmpty() || rol == null) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Campos incompletos", "Por favor completa nombre, correo, contraseña y rol.");
+            return;
+        }
+
+        // Separa "Nombre Apellido" en nombre y apellido (el formulario solo tiene un campo de nombre)
+        String nombre = nombreCompleto;
+        String apellido = "";
+        int espacio = nombreCompleto.indexOf(' ');
+        if (espacio > 0) {
+            nombre = nombreCompleto.substring(0, espacio);
+            apellido = nombreCompleto.substring(espacio + 1).trim();
+        }
+
+        int idRol = "Admin".equals(rol) ? 1 : 2;
+        String idUsuario = "usr-" + UUID.randomUUID().toString().substring(0, 8);
+        String hash = BCrypt.hashpw(password, BCrypt.gensalt());
+
+        Usuario nuevoUsuario = new Usuario(idUsuario, nombre, apellido, email, hash, idRol);
+
+        try {
+            usuarioService.guardarUsuario(nuevoUsuario);
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Usuario registrado correctamente.");
+            limpiarCampos(event);
+        } catch (IllegalArgumentException e) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Correo duplicado", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo registrar el usuario en la base de datos.");
+        }
+    }
+
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
     @FXML

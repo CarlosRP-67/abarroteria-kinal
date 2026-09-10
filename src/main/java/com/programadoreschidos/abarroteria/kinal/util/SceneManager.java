@@ -70,7 +70,7 @@ public class SceneManager {
             if(clazz == UsuarioController.class){
                 UsuarioRepository usuarioRepository = new UsuarioRepository();
                 UsuarioService usuarioService = new UsuarioService(usuarioRepository);
-                return new UsuarioController(usuarioService);
+                return new UsuarioController(usuarioService, this);
             }
             try{
                 return clazz.getDeclaredConstructor().newInstance();
@@ -104,7 +104,9 @@ public class SceneManager {
         
         loader.setControllerFactory(clazz -> {
             if(clazz == RegistroController.class){
-                return new RegistroController(this);
+                UsuarioRepository usuarioRepository = new UsuarioRepository();
+                UsuarioService usuarioService = new UsuarioService(usuarioRepository);
+                return new RegistroController(this, usuarioService);
             }
             try{
                 return clazz.getDeclaredConstructor().newInstance();

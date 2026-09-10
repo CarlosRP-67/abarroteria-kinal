@@ -15,4 +15,8 @@ public class UsuarioService {
     public ObservableList<Usuario> findUsuarios() {
         return usuarioRepository.findAll();
     }
+
+    public void guardarUsuario(Usuario usuario) {
+        usuarioRepository.save(usuario);
+    }
 }
