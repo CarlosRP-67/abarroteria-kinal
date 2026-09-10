@@ -15,4 +15,16 @@ public class UsuarioService {
     public ObservableList<Usuario> findUsuarios() {
         return usuarioRepository.findAll();
     }
+
+    public void registrarUsuario(Usuario usuario) {
+        usuarioRepository.save(usuario);
+    }
+
+    public void actualizarUsuario(Usuario usuario) {
+        usuarioRepository.update(usuario);
+    }
+
+    public void eliminarUsuario(String idUsuarios) {
+        usuarioRepository.delete(idUsuarios);
+    }
 }

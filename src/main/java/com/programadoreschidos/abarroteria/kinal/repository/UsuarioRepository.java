@@ -31,4 +31,47 @@ public class UsuarioRepository {
             throw new RuntimeException("Error en la consulta de usuarios.");
         }
     }
+
+    public void save(Usuario usuario) {
+        String sql = "INSERT INTO usuarios (id_usuarios, nombre, apellido, email, contrasena_hash, id_roles) VALUES (?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement pstm = DataBaseConnection.getDataBaseConnection().prepareStatement(sql)) {
+            pstm.setString(1, usuario.getIdUsuarios());
+            pstm.setString(2, usuario.getNombre());
+            pstm.setString(3, usuario.getApellido());
+            pstm.setString(4, usuario.getEmail());
+            pstm.setString(5, usuario.getContrasenaHash());
+            pstm.setInt(6, usuario.getId_roles());
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al registrar el usuario.");
+        }
+    }
+
+    public void update(Usuario usuario) {
+        String sql = "UPDATE usuarios SET nombre = ?, apellido = ?, email = ?, contrasena_hash = ?, id_roles = ? WHERE id_usuarios = ?;";
+        try (PreparedStatement pstm = DataBaseConnection.getDataBaseConnection().prepareStatement(sql)) {
+            pstm.setString(1, usuario.getNombre());
+            pstm.setString(2, usuario.getApellido());
+            pstm.setString(3, usuario.getEmail());
+            pstm.setString(4, usuario.getContrasenaHash());
+            pstm.setInt(5, usuario.getId_roles());
+            pstm.setString(6, usuario.getIdUsuarios());
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al actualizar el usuario.");
+        }
+    }
+
+    public void delete(String idUsuarios) {
+        String sql = "DELETE FROM usuarios WHERE id_usuarios = ?;";
+        try (PreparedStatement pstm = DataBaseConnection.getDataBaseConnection().prepareStatement(sql)) {
+            pstm.setString(1, idUsuarios);
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al eliminar el usuario.");
+        }
+    }
 }
