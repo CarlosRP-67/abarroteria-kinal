@@ -20,10 +20,15 @@ import javafx.scene.layout.GridPane;
 import main.java.com.programadoreschidos.abarroteria.kinal.model.Usuario;
 import main.java.com.programadoreschidos.abarroteria.kinal.security.jbcrypt.BCrypt;
 import main.java.com.programadoreschidos.abarroteria.kinal.service.UsuarioService;
+import main.java.com.programadoreschidos.abarroteria.kinal.util.SceneManager;
 
 public class UsuarioController implements Initializable {
 
     private UsuarioService usuarioService;
+    private SceneManager sceneManager;
+
+    @FXML
+    private Button btnRegresarLogin;
 
     @FXML private TableView<Usuario> tableUsuario;
     @FXML private TableColumn<Usuario, String> tableColumnIdUsuario;
@@ -36,8 +41,9 @@ public class UsuarioController implements Initializable {
     @FXML private Button btnEditar;
     @FXML private Button btnEliminar;
 
-    public UsuarioController(UsuarioService usuarioService) {
+    public UsuarioController(UsuarioService usuarioService, SceneManager sceneManager) {
         this.usuarioService = usuarioService;
+        this.sceneManager = sceneManager;
     }
 
     @Override
@@ -53,7 +59,7 @@ public class UsuarioController implements Initializable {
         tableColumnEmailUsuario.setCellValueFactory(new PropertyValueFactory<>("email"));
         tableColumnRolUsuario.setCellValueFactory(new PropertyValueFactory<>("id_roles"));
         tableUsuario.setItems(usuarioService.findUsuarios());
-        tableUsuario.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); 
+        tableUsuario.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);  
     }
 
     @FXML
@@ -70,7 +76,6 @@ public class UsuarioController implements Initializable {
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 150, 10, 10));
 
-        // Ya no necesitamos pedir el ID manualmente porque se generará y hasheará automáticamente
         TextField txtNombre = new TextField();
         txtNombre.setPromptText("Nombre");
         TextField txtApellido = new TextField();
@@ -98,16 +103,14 @@ public class UsuarioController implements Initializable {
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == guardarButtonType) {
                 try {
-                    // Generar un ID único y hashearlo (usando UUID combinado con BCrypt o hash)
                     String rawId = java.util.UUID.randomUUID().toString();
-                    String hashedId = BCrypt.hashpw(rawId, BCrypt.gensalt()).substring(0, 20); // Un ID seguro y único
+                    String hashedId = BCrypt.hashpw(rawId, BCrypt.gensalt()).substring(0, 20);
 
-                    // Hashear la contraseña usando BCrypt
                     String passwordHash = BCrypt.hashpw(txtContrasena.getText(), BCrypt.gensalt());
                     int rolId = Integer.parseInt(txtRol.getText().trim());
 
                     return new Usuario(
-                        hashedId, // ID ya hasheado y único
+                        hashedId,
                         txtNombre.getText(),
                         txtApellido.getText(),
                         txtEmail.getText(),
@@ -177,7 +180,6 @@ public class UsuarioController implements Initializable {
             if (dialogButton == actualizarButtonType) {
                 try {
                     String passwordHash;
-                    // Si el campo de contraseña está vacío, mantenemos el hash anterior, si no, generamos uno nuevo
                     if (txtContrasena.getText() == null || txtContrasena.getText().trim().isEmpty()) {
                         passwordHash = usuarioSeleccionado.getContrasenaHash();
                     } else {
@@ -229,8 +231,22 @@ public class UsuarioController implements Initializable {
         }
     }
 
+    @FXML
+    private void handleRegresarLogin() {
+        try {
+            sceneManager.showLoginView();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("No se pudo regresar a la pantalla de login.");
+            alert.showAndWait();
+        }
+    }
+
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION); // Cambiado Alerttype por AlertType
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

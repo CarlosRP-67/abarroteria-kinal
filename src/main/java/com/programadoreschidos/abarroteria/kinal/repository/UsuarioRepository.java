@@ -7,6 +7,7 @@ import main.java.com.programadoreschidos.abarroteria.kinal.model.Usuario;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class UsuarioRepository {
 
@@ -42,6 +43,8 @@ public class UsuarioRepository {
             pstm.setString(5, usuario.getContrasenaHash());
             pstm.setInt(6, usuario.getId_roles());
             pstm.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            throw new IllegalArgumentException("El correo '" + usuario.getEmail() + "' ya se encuentra registrado.");
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Error al registrar el usuario.");
@@ -58,6 +61,8 @@ public class UsuarioRepository {
             pstm.setInt(5, usuario.getId_roles());
             pstm.setString(6, usuario.getIdUsuarios());
             pstm.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            throw new IllegalArgumentException("El correo '" + usuario.getEmail() + "' ya pertenece a otro usuario.");
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Error al actualizar el usuario.");
