@@ -1,0 +1,8 @@
+#archivos de xompilacion
+/build/
+/dist/
+/nbproject/private/
+
+#clase autogeneradas
+*.class
+*.jar
