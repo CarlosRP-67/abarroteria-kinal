@@ -24,6 +24,7 @@
             <children>
                 <Button fx:id="btnNavProductos" maxWidth="Infinity" onAction="#handleShowProductos" styleClass="nav-button" text="Productos" />
                 <Button fx:id="btnNavUsuarios" maxWidth="Infinity" onAction="#handleShowUsuarios" styleClass="nav-button" text="Usuarios" />
+                <Button fx:id="btnNavFacturas" maxWidth="Infinity" onAction="#handleShowFacturas" styleClass="nav-button" text="Facturas" />
 
                 <!-- Empuja el botón de abajo hacia el fondo del panel -->
                 <Region VBox.vgrow="ALWAYS" />
@@ -59,7 +60,7 @@
 
                                 <HBox alignment="CENTER_RIGHT" spacing="10" GridPane.rowIndex="1">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleActualizarProducto" prefHeight="35.0" prefWidth="160.0" styleClass="primary-button" text="Actualizar" />
+                                        <Button mnemonicParsing="false" onAction="#handleActualizarProductos" prefHeight="35.0" prefWidth="160.0" styleClass="primary-button" text="Actualizar" />
                                         <Button mnemonicParsing="false" onAction="#handleEliminarProducto" prefHeight="35.0" prefWidth="200.0" styleClass="danger-button" text="Eliminar Producto" />
                                     </children>
                                 </HBox>
@@ -70,6 +71,9 @@
 
                 <!-- Panel de Usuarios: vista incluida desde usuario-view.fxml -->
                 <fx:include fx:id="panelUsuarios" managed="false" source="usuario-view.fxml" visible="false" />
+
+                <!-- Panel de Facturas: vista incluida desde factura-view.fxml -->
+                <fx:include fx:id="panelFacturas" managed="false" source="factura-view.fxml" visible="false" />
             </children>
         </StackPane>
     </center>

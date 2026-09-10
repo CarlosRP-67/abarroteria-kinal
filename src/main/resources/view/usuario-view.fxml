@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -7,38 +8,68 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+
 <AnchorPane xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.programadoreschidos.abarroteria.kinal.controller.UsuarioController">
+
    <children>
-      <GridPane hgap="10" vgap="12"
-                AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0"
-                AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+
+      <GridPane hgap="10" vgap="12" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+
         <columnConstraints>
+
           <ColumnConstraints hgrow="ALWAYS" percentWidth="100.0" />
+
         </columnConstraints>
+
         <rowConstraints>
-          <RowConstraints vgrow="ALWAYS" percentHeight="88.0" />
-          <RowConstraints vgrow="SOMETIMES" percentHeight="12.0" minHeight="45.0" />
+
+          <RowConstraints percentHeight="88.0" vgrow="ALWAYS" />
+
+          <RowConstraints minHeight="45.0" percentHeight="12.0" vgrow="SOMETIMES" />
+
         </rowConstraints>
+
          <children>
+
             <TableView fx:id="tableUsuario" GridPane.rowIndex="0">
+
               <columns>
+
                 <TableColumn fx:id="tableColumnIdUsuario" text="ID" />
+
                 <TableColumn fx:id="tableColumnNombreUsuario" text="Nombre" />
+
                 <TableColumn fx:id="tableColumnApellidoUsuario" text="Apellido" />
+
                 <TableColumn fx:id="tableColumnEmailUsuario" text="Email" />
+
                 <TableColumn fx:id="tableColumnRolUsuario" text="Rol" />
+
               </columns>
+
             </TableView>
 
-            <!-- Zona reservada para los botones del CRUD de usuarios (Agregar/Editar/Eliminar) -->
-            <HBox fx:id="panelAccionesUsuario" spacing="10" alignment="CENTER_RIGHT"
-                  GridPane.rowIndex="1">
+
+
+            <!-- Zona de botones del CRUD de usuarios -->
+
+            <HBox fx:id="panelAccionesUsuario" alignment="CENTER_RIGHT" spacing="10" GridPane.rowIndex="1">
+
                <children>
-                  <!-- Aquí se agregarán los botones de Agregar / Editar / Eliminar Usuario -->
+
                   <Button fx:id="btnRegresarLogin" mnemonicParsing="false" onAction="#handleRegresarLogin" text="Regresar al Login" />
+                  <Button fx:id="btnNuevo" onAction="#handleButtonNuevo" prefWidth="90.0" stylesheets="@../css/usuario-view.css" text="Nuevo" />
+                  <Button fx:id="btnEditar" onAction="#handleButtonEditar" prefWidth="90.0" stylesheets="@../css/usuario-view.css" text="Editar" />
+                  <Button fx:id="btnEliminar" onAction="#handleButtonEliminar" prefWidth="90.0" stylesheets="@../css/usuario-view.css" text="Eliminar" />
+
                </children>
+
             </HBox>
+
          </children>
+
       </GridPane>
+
    </children>
+
 </AnchorPane>
