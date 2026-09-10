@@ -20,16 +20,16 @@
     </stylesheets>
 
     <left>
-        <VBox styleClass="nav-panel" prefWidth="180.0" minWidth="180.0" spacing="8.0">
+        <VBox minWidth="180.0" prefWidth="180.0" spacing="8.0" styleClass="nav-panel">
             <children>
-                <Button fx:id="btnNavProductos" styleClass="nav-button" text="Productos" onAction="#handleShowProductos" maxWidth="Infinity" />
-                <Button fx:id="btnNavUsuarios" styleClass="nav-button" text="Usuarios" onAction="#handleShowUsuarios" maxWidth="Infinity" />
-                <Button fx:id="btnNavFacturas" styleClass="nav-button" text="Facturas" onAction="#handleShowFacturas" maxWidth="Infinity" />
+                <Button fx:id="btnNavProductos" maxWidth="Infinity" onAction="#handleShowProductos" styleClass="nav-button" text="Productos" />
+                <Button fx:id="btnNavUsuarios" maxWidth="Infinity" onAction="#handleShowUsuarios" styleClass="nav-button" text="Usuarios" />
+                <Button fx:id="btnNavFacturas" maxWidth="Infinity" onAction="#handleShowFacturas" styleClass="nav-button" text="Facturas" />
 
                 <!-- Empuja el botón de abajo hacia el fondo del panel -->
                 <Region VBox.vgrow="ALWAYS" />
 
-                <Button fx:id="btnRegresarInicio" styleClass="danger-button" text="Regresar al Inicio" onAction="#handleRegresarInicio" maxWidth="Infinity" />
+                <Button fx:id="btnRegresarInicio" maxWidth="Infinity" onAction="#handleRegresarInicio" styleClass="danger-button" text="Regresar al Inicio" />
             </children>
         </VBox>
     </left>
@@ -40,15 +40,13 @@
                 <!-- Panel de Productos -->
                 <AnchorPane fx:id="panelProductos">
                     <children>
-                        <GridPane hgap="10" vgap="12"
-                                  AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0"
-                                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                        <GridPane hgap="10" vgap="12" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="ALWAYS" percentWidth="100.0" />
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints vgrow="ALWAYS" percentHeight="88.0" />
-                                <RowConstraints vgrow="SOMETIMES" percentHeight="12.0" minHeight="45.0" />
+                                <RowConstraints percentHeight="88.0" vgrow="ALWAYS" />
+                                <RowConstraints minHeight="45.0" percentHeight="12.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
                                 <TableView fx:id="tableProducto" GridPane.rowIndex="0">
@@ -60,12 +58,10 @@
                                     </columns>
                                 </TableView>
 
-                                <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.rowIndex="1">
+                                <HBox alignment="CENTER_RIGHT" spacing="10" GridPane.rowIndex="1">
                                     <children>
-                                        <Button mnemonicParsing="false" styleClass="primary-button" onAction="#handleActualizarProductos"
-                                                prefHeight="35.0" prefWidth="160.0" text="Actualizar" />
-                                        <Button mnemonicParsing="false" styleClass="danger-button" onAction="#handleEliminarProducto"
-                                                prefHeight="35.0" prefWidth="200.0" text="Eliminar Producto" />
+                                        <Button mnemonicParsing="false" onAction="#handleActualizarProductos" prefHeight="35.0" prefWidth="160.0" styleClass="primary-button" text="Actualizar" />
+                                        <Button mnemonicParsing="false" onAction="#handleEliminarProducto" prefHeight="35.0" prefWidth="200.0" styleClass="danger-button" text="Eliminar Producto" />
                                     </children>
                                 </HBox>
                             </children>
@@ -74,10 +70,10 @@
                 </AnchorPane>
 
                 <!-- Panel de Usuarios: vista incluida desde usuario-view.fxml -->
-                <fx:include fx:id="panelUsuarios" source="usuario-view.fxml" visible="false" managed="false" />
+                <fx:include fx:id="panelUsuarios" managed="false" source="usuario-view.fxml" visible="false" />
 
                 <!-- Panel de Facturas: vista incluida desde factura-view.fxml -->
-                <fx:include fx:id="panelFacturas" source="factura-view.fxml" visible="false" managed="false" />
+                <fx:include fx:id="panelFacturas" managed="false" source="factura-view.fxml" visible="false" />
             </children>
         </StackPane>
     </center>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.programadoreschidos.abarroteria.kinal.controller.DashboardController">
+    <stylesheets>
+        <URL value="@/main/resources/css/dashboard-style.css" />
+    </stylesheets>
+
+    <left>
+<<<<<<< HEAD
+        <VBox minWidth="180.0" prefWidth="180.0" spacing="8.0" styleClass="nav-panel">
+            <children>
+                <Button fx:id="btnNavProductos" maxWidth="Infinity" onAction="#handleShowProductos" styleClass="nav-button" text="Productos" />
+                <Button fx:id="btnNavUsuarios" maxWidth="Infinity" onAction="#handleShowUsuarios" styleClass="nav-button" text="Usuarios" />
+=======
+        <VBox styleClass="nav-panel" prefWidth="180.0" minWidth="180.0" spacing="8.0">
+            <children>
+                <Button fx:id="btnNavProductos" styleClass="nav-button" text="Productos" onAction="#handleShowProductos" maxWidth="Infinity" />
+                <Button fx:id="btnNavUsuarios" styleClass="nav-button" text="Usuarios" onAction="#handleShowUsuarios" maxWidth="Infinity" />
+>>>>>>> cd8668f808e445900d2ba7ea8e816e0f4318ac44
+
+                <!-- Empuja el botón de abajo hacia el fondo del panel -->
+                <Region VBox.vgrow="ALWAYS" />
+
+<<<<<<< HEAD
+                <Button fx:id="btnRegresarInicio" maxWidth="Infinity" onAction="#handleRegresarInicio" styleClass="danger-button" text="Regresar al Inicio" />
+=======
+                <Button fx:id="btnRegresarInicio" styleClass="danger-button" text="Regresar al Inicio" onAction="#handleRegresarInicio" maxWidth="Infinity" />
+>>>>>>> cd8668f808e445900d2ba7ea8e816e0f4318ac44
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane>
+            <children>
+                <!-- Panel de Productos -->
+                <AnchorPane fx:id="panelProductos">
+                    <children>
+<<<<<<< HEAD
+                        <GridPane hgap="10" vgap="12" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+=======
+                        <GridPane hgap="10" vgap="12"
+                                  AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0"
+                                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+>>>>>>> cd8668f808e445900d2ba7ea8e816e0f4318ac44
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+<<<<<<< HEAD
+                                <RowConstraints percentHeight="88.0" vgrow="ALWAYS" />
+                                <RowConstraints minHeight="45.0" percentHeight="12.0" vgrow="SOMETIMES" />
+=======
+                                <RowConstraints vgrow="ALWAYS" percentHeight="88.0" />
+                                <RowConstraints vgrow="SOMETIMES" percentHeight="12.0" minHeight="45.0" />
+>>>>>>> cd8668f808e445900d2ba7ea8e816e0f4318ac44
+                            </rowConstraints>
+                            <children>
+                                <TableView fx:id="tableProducto" GridPane.rowIndex="0">
+                                    <columns>
+                                        <TableColumn fx:id="tableColumnIdProducto" text="ID" />
+                                        <TableColumn fx:id="tableColumnNombreProducto" text="Nombre" />
+                                        <TableColumn fx:id="tableColumnStock" text="Stock" />
+                                        <TableColumn fx:id="tableColumnPrecio" text="Precio" />
+                                    </columns>
+                                </TableView>
+
+<<<<<<< HEAD
+                                <HBox alignment="CENTER_RIGHT" spacing="10" GridPane.rowIndex="1">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#handleActualizarProducto" prefHeight="35.0" prefWidth="160.0" styleClass="primary-button" text="Actualizar" />
+                                        <Button mnemonicParsing="false" onAction="#handleEliminarProducto" prefHeight="35.0" prefWidth="200.0" styleClass="danger-button" text="Eliminar Producto" />
+=======
+                                <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.rowIndex="1">
+                                    <children>
+                                        <Button mnemonicParsing="false" styleClass="primary-button" onAction="#handleActualizarProductos"
+                                                prefHeight="35.0" prefWidth="160.0" text="Actualizar" />
+                                        <Button mnemonicParsing="false" styleClass="danger-button" onAction="#handleEliminarProducto"
+                                                prefHeight="35.0" prefWidth="200.0" text="Eliminar Producto" />
+>>>>>>> cd8668f808e445900d2ba7ea8e816e0f4318ac44
+                                    </children>
+                                </HBox>
+                            </children>
+                        </GridPane>
+                    </children>
+                </AnchorPane>
+
+                <!-- Panel de Usuarios: vista incluida desde usuario-view.fxml -->
+<<<<<<< HEAD
+                <fx:include fx:id="panelUsuarios" managed="false" source="usuario-view.fxml" visible="false" />
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>
+=======
+                <fx:include fx:id="panelUsuarios" source="usuario-view.fxml" visible="false" managed="false" />
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>
+>>>>>>> cd8668f808e445900d2ba7ea8e816e0f4318ac44
