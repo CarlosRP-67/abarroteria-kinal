@@ -1,6 +1,5 @@
 package main.java.com.programadoreschidos.abarroteria.kinal.util;
 
-import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,7 +24,6 @@ import main.java.com.programadoreschidos.abarroteria.kinal.service.UsuarioServic
 public class SceneManager {
 
     private final Stage stage;
-
     private final String FXML_PATH = "/main/resources/view/";
     
     public SceneManager(Stage stage) {
@@ -72,7 +70,7 @@ public class SceneManager {
             if(clazz == UsuarioController.class){
                 UsuarioRepository usuarioRepository = new UsuarioRepository();
                 UsuarioService usuarioService = new UsuarioService(usuarioRepository);
-                return new UsuarioController(usuarioService, this);
+                return new UsuarioController(usuarioService);
             }
             if(clazz == FacturaController.class){
                 ProductoRepository productoRepository = new ProductoRepository();
@@ -95,15 +93,15 @@ public class SceneManager {
         // Solo el dashboard necesita un tamaño mínimo para verse bien responsivo.
         stage.setMinWidth(700);
         stage.setMinHeight(450);
-
         stage.centerOnScreen();
         stage.show();
     }
 
-    public void showAlertInfo(String head, String title, String content, AlertType type){
+    public void showAlertInfo(String head, String title, String content, AlertType type) {
         Alert alert = new Alert(type);
         alert.initOwner(this.stage);
         alert.setTitle(title);
+        alert.setHeaderText(head);
         alert.setContentText(content);
         alert.showAndWait();
     }
