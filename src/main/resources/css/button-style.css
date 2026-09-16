@@ -1,3 +1,7 @@
+/* ==========================================================================
+   ESTILOS GENERALES Y DE NAVEGACIÓN
+   ========================================================================== */
+
 /* Fondo general de la ventana */
 .mainFxmlClass {
     -fx-background-color: #121824;
@@ -44,7 +48,10 @@
     -fx-text-fill: white;
 }
 
-/* Estilo general para la TableView */
+/* ==========================================================================
+   ESTILOS DE TABLAS (TABLEVIEW)
+   ========================================================================== */
+
 .table-view {
     -fx-background-color: #1e293b;
     -fx-table-cell-border-color: #334155;
@@ -74,7 +81,7 @@
 /* Celdas de la tabla */
 .table-row-cell {
     -fx-background-color: #1e293b;
-    -fx-text-fill: e2e8f0;
+    -fx-text-fill: #e2e8f0;
 }
 
 .table-row-cell:even {
@@ -92,7 +99,10 @@
     -fx-padding: 6px 10px;
 }
 
-/* ===== Botones de la vista Login (Bordes Redondos) ===== */
+/* ==========================================================================
+   BOTONES Y CAMPOS GENERALES
+   ========================================================================== */
+
 .btn-primary {
     -fx-background-color: #3b82f6;
     -fx-text-fill: white;
@@ -121,7 +131,7 @@
     -fx-text-fill: #f8fafc;
 }
 
-/* ===== Campos de texto del login (Bordes redondos y estéticos) ===== */
+/* ===== Campos de texto generales ===== */
 .text-field, .password-field {
     -fx-background-radius: 8px;
     -fx-border-radius: 8px;
@@ -170,4 +180,113 @@
 
 .primary-button:pressed {
     -fx-background-color: #1d4ed8;
+}
+
+.btn-third {
+    -fx-background-color: linear-gradient(to bottom, #ff9966, #ff5e62);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+}
+
+.btn-third:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff5e62, #e0484c);
+}
+
+/* ==========================================================================
+   ESTILOS CORREGIDOS PARA EL LOGIN (RESPONSIVE)
+   ========================================================================== */
+
+.root-pane {
+    -fx-background-color: #0e2a5c;
+}
+
+.top-bar {
+    -fx-border-color: transparent transparent rgba(148, 178, 255, 0.25) transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Panel izquierdo corregido */
+.welcome-panel {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #2563eb 0%, #4f46e5 50%, #8b5cf6 100%);
+    -fx-background-radius: 20px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 30, 0, 0, 10);
+}
+
+/* Título izquierdo ajustado para no truncarse */
+.welcome-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
+
+/* Tarjeta contenedora de Login */
+.login-card {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-border-color: rgba(139, 92, 246, 0.35);
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 30, 0.1, 0, 10);
+}
+
+.card-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #eef1fb;
+}
+
+.card-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: #9aa4c2;
+    -fx-wrap-text: true;
+}
+
+.field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #9aa4c2;
+}
+
+.input-field {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: rgba(255, 255, 255, 0.16);
+    -fx-border-width: 1px;
+    -fx-text-fill: #eef1fb;
+    -fx-prompt-text-fill: #8a96b8;
+    -fx-font-size: 13px;
+    -fx-padding: 8px 12px;
+}
+
+.input-field:focused {
+    -fx-border-color: #8b5cf6;
+    -fx-background-color: rgba(255, 255, 255, 0.09);
+    -fx-effect: dropshadow(gaussian, rgba(139, 92, 246, 0.35), 10, 0.2, 0, 0);
+}
+
+.btn-secondary {
+    -fx-background-color: rgba(139, 92, 246, 0.12);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: rgba(139, 92, 246, 0.45);
+    -fx-border-width: 1px;
+    -fx-text-fill: #a78bfa;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: rgba(139, 92, 246, 0.22);
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #8b5cf6;
 }

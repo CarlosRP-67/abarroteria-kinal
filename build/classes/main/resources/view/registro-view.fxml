@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21.0.1" fx:controller="main.java.com.programadoreschidos.abarroteria.kinal.controller.RegistroController">
+    <stylesheets>
+        <URL value="@/main/resources/css/registro.css" />
+    </stylesheets>
+
+    <children>
+        <VBox layoutX="50.0" layoutY="30.0" prefWidth="500.0" spacing="15.0">
+            <children>
+                <Label styleClass="titulo" text="Registro de Nuevo Usuario" />
+
+                <GridPane hgap="10.0" vgap="12.0">
+                    <children>
+                        <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="txtNombre" promptText="Nombre completo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label text="Correo / Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtEmail" promptText="correo@ejemplo.com" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                        <Label text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <children>
+                                <PasswordField fx:id="txtPassword" prefWidth="200.0" promptText="********" />
+                                <TextField fx:id="txtPasswordVisible" managed="false" prefWidth="200.0" promptText="********" visible="false" />
+                                <Button fx:id="btnVerPassword" text="👁" />
+                            </children>
+                        </HBox>
+
+                        <Label text="Rol:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cbRol" promptText="Selecciona el rol" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    </children>
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+
+                <HBox alignment="CENTER" spacing="15.0">
+                    <children>
+                        <Button fx:id="btnGuardar" onAction="#guardarUsuario" text="Registrar" />
+                        <Button fx:id="btnLimpiar" onAction="#limpiarCampos" text="Limpiar" />
+                        <Button fx:id="btnCancelar" onAction="#cancelarRegistro" text="Regresar " />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

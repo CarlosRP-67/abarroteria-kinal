@@ -8,47 +8,52 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.com.programadoreschidos.abarroteria.kinal.controller.DashboardController;
+import main.java.com.programadoreschidos.abarroteria.kinal.controller.FacturaController;
 import main.java.com.programadoreschidos.abarroteria.kinal.controller.LoginController;
+import main.java.com.programadoreschidos.abarroteria.kinal.controller.RegistroController;
 import main.java.com.programadoreschidos.abarroteria.kinal.controller.UsuarioController;
 import main.java.com.programadoreschidos.abarroteria.kinal.repository.AuthRepository;
+import main.java.com.programadoreschidos.abarroteria.kinal.repository.FacturaRepository;
 import main.java.com.programadoreschidos.abarroteria.kinal.repository.ProductoRepository;
 import main.java.com.programadoreschidos.abarroteria.kinal.repository.UsuarioRepository;
 import main.java.com.programadoreschidos.abarroteria.kinal.service.AuthService;
 import main.java.com.programadoreschidos.abarroteria.kinal.service.DashboadService;
+import main.java.com.programadoreschidos.abarroteria.kinal.service.FacturaService;
 import main.java.com.programadoreschidos.abarroteria.kinal.service.UsuarioService;
 
 public class SceneManager {
 
     private final Stage stage;
     private final String FXML_PATH = "/main/resources/view/";
-
+    
     public SceneManager(Stage stage) {
         this.stage = stage;
-        this.stage.initStyle(StageStyle.DECORATED);
     }
 
     public void showLoginView() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "login-view.fxml"));
 
         loader.setControllerFactory(clazz -> {
-            if (clazz == LoginController.class) {
+            if(clazz == LoginController.class){    
                 AuthRepository authRepository = new AuthRepository();
                 AuthService authService = new AuthService(authRepository);
                 return new LoginController(authService, this);
             }
-            try {
+            try{
                 return clazz.getDeclaredConstructor().newInstance();
-            } catch (Exception e) {
-                throw new RuntimeException("Error al crear el constructor: ");
+            }catch(Exception e){    
+                throw new RuntimeException("Error al crear el constructor: " + e.getMessage());
             }
         });
 
         Parent root = loader.load();
-        Scene scene = new Scene(root, 600, 400);
+        // Ajuste de altura a 580px y anchura a 850px para evitar el recorte inferior
+        Scene scene = new Scene(root, 850, 580);
+        
+        stage.setMinWidth(800);
+        stage.setMinHeight(550);
 
-        stage.setMinWidth(0);
-        stage.setMinHeight(0);
-        stage.setScene(scene);
+        stage.setScene(scene);  
         stage.centerOnScreen();
         stage.show();
     }
@@ -57,29 +62,35 @@ public class SceneManager {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "dashboard-view.fxml"));
 
         loader.setControllerFactory(clazz -> {
-            if (clazz == DashboardController.class) {
+            if(clazz == DashboardController.class){
                 ProductoRepository productoRepository = new ProductoRepository();
                 DashboadService dashboardService = new DashboadService(productoRepository);
-                UsuarioRepository usuarioRepository = new UsuarioRepository();
-                UsuarioService usuarioService = new UsuarioService(usuarioRepository);
                 return new DashboardController(dashboardService, this);
             }
-            if (clazz == UsuarioController.class) {
+            if(clazz == UsuarioController.class){
                 UsuarioRepository usuarioRepository = new UsuarioRepository();
                 UsuarioService usuarioService = new UsuarioService(usuarioRepository);
                 return new UsuarioController(usuarioService);
             }
-            try {
+            if(clazz == FacturaController.class){
+                ProductoRepository productoRepository = new ProductoRepository();
+                DashboadService dashboardService = new DashboadService(productoRepository);
+                FacturaRepository facturaRepository = new FacturaRepository();
+                FacturaService facturaService = new FacturaService(facturaRepository, productoRepository);
+                return new FacturaController(facturaService, dashboardService);
+            }
+            try{
                 return clazz.getDeclaredConstructor().newInstance();
-            } catch (Exception e) {
-                throw new RuntimeException("Error al crear el constructor (Dashboard)");
+            }catch(Exception e){
+                throw new RuntimeException("Error al crear el constructor (Dashboard): " + e.getMessage());
             }
         });
 
         Parent root = loader.load();
         Scene scene = new Scene(root, 900, 600);
-
         stage.setScene(scene);
+        
+        // Solo el dashboard necesita un tamaño mínimo para verse bien responsivo.
         stage.setMinWidth(700);
         stage.setMinHeight(450);
         stage.centerOnScreen();
@@ -93,5 +104,28 @@ public class SceneManager {
         alert.setHeaderText(head);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    public void showRegistroView() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "registro-view.fxml"));
+        
+        loader.setControllerFactory(clazz -> {
+            if(clazz == RegistroController.class){
+                UsuarioRepository usuarioRepository = new UsuarioRepository();
+                UsuarioService usuarioService = new UsuarioService(usuarioRepository);
+                return new RegistroController(this, usuarioService);
+            }
+            try{
+                return clazz.getDeclaredConstructor().newInstance();
+            }catch(Exception e){
+                throw new RuntimeException("Error al crear el constructor (Registro): " + e.getMessage());
+            }
+        });
+
+        Parent root = loader.load();
+        Scene scene = new Scene(root, 600, 600);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 }
